@@ -1,64 +1,88 @@
 // lib/manifest.ts
-
 export const MANIFEST = [
     {
       name: "Button",
-      description: "A clickable button used for actions. Do not use for navigation.",
+      description: "A clickable button. Use for actions, not navigation.",
       props: [
-        { name: "children", type: "string", description: "The text inside the button" },
-        { 
-          name: "variant", 
-          type: "string", 
-          allowedValues: ["default", "destructive", "outline", "secondary", "ghost", "link"],
-          description: "The visual style of the button"
-        },
-        { name: "size", type: "string", allowedValues: ["default", "sm", "lg", "icon"] },
+        { name: "children", type: "string", description: "Button text" },
+        { name: "variant", type: "string", allowedValues: ["default", "destructive", "outline", "ghost"] },
+        { name: "onClick", type: "function", description: "Click handler" }
       ],
     },
     {
       name: "Card",
-      description: "A container for grouping related content.",
+      description: "A container for content with a header and footer.",
       props: [
-        { name: "title", type: "string", description: "The heading of the card" },
-        { name: "description", type: "string", description: "Sub-heading or explanatory text" },
-        { name: "children", type: "ReactNode", description: "The content inside the card" },
-        { name: "footer", type: "ReactNode", description: "Actions or text at the bottom of the card" },
+        { name: "title", type: "string" },
+        { name: "description", type: "string" },
+        { name: "children", type: "ReactNode" },
+        { name: "footer", type: "ReactNode" },
       ],
     },
     {
       name: "Input",
-      description: "A text field for user input.",
+      description: "A text input field.",
       props: [
-        { name: "placeholder", type: "string", description: "Placeholder text" },
-        { name: "label", type: "string", description: "Label text above the input" },
-        { name: "type", type: "string", allowedValues: ["text", "email", "password", "number"] },
+        { name: "label", type: "string" },
+        { name: "placeholder", type: "string" },
+        { name: "type", type: "string", allowedValues: ["text", "email", "password"] },
+      ],
+    },
+    {
+      name: "Table",
+      description: "A simple data table.",
+      props: [
+        { name: "headers", type: "Array<string>", description: "Column headers" },
+        { name: "data", type: "Array<Array<string>>", description: "Rows of data matching headers" },
+      ],
+    },
+    {
+      name: "Navbar",
+      description: "Top navigation bar.",
+      props: [
+        { name: "logo", type: "string", description: "Brand text" },
+        { name: "links", type: "Array<{label: string, href: string}>" },
+      ],
+    },
+    {
+      name: "Sidebar",
+      description: "Side navigation menu.",
+      props: [
+        { name: "items", type: "Array<{icon: string, label: string}>" },
+      ],
+    },
+    {
+      name: "Modal",
+      description: "An overlay dialog.",
+      props: [
+        { name: "isOpen", type: "boolean" },
+        { name: "title", type: "string" },
+        { name: "children", type: "ReactNode" },
+        { name: "onClose", type: "function" },
+      ],
+    },
+    {
+      name: "Chart",
+      description: "A visual mock chart (Bar type).",
+      props: [
+        { name: "title", type: "string" },
+        { name: "data", type: "Array<{label: string, value: number}>" },
       ],
     },
     {
       name: "VStack",
-      description: "Vertical stack layout. Renders a flex column with gap.",
+      description: "Vertical layout stack.",
       props: [
         { name: "children", type: "ReactNode" },
-        { name: "gap", type: "number", allowedValues: [0, 2, 4, 6, 8], description: "Gap between items (tailwind units)" },
-        { name: "align", type: "string", allowedValues: ["start", "center", "end", "stretch"] },
+        { name: "gap", type: "number", allowedValues: [2, 4, 8] },
       ],
     },
     {
       name: "HStack",
-      description: "Horizontal stack layout. Renders a flex row with gap.",
+      description: "Horizontal layout stack.",
       props: [
         { name: "children", type: "ReactNode" },
-        { name: "gap", type: "number", allowedValues: [0, 2, 4, 6, 8] },
-        { name: "justify", type: "string", allowedValues: ["start", "center", "end", "between"] },
-      ],
-    },
-    {
-      name: "Grid",
-      description: "Grid layout.",
-      props: [
-        { name: "children", type: "ReactNode" },
-        { name: "cols", type: "number", allowedValues: [1, 2, 3, 4], description: "Number of columns" },
-        { name: "gap", type: "number", allowedValues: [0, 2, 4, 6, 8] },
+        { name: "gap", type: "number", allowedValues: [2, 4, 8] },
       ],
     },
   ];
